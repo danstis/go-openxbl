@@ -1,10 +1,10 @@
-# gotemplate
+# go-openxbl
 
-[![Go Report Card](https://goreportcard.com/badge/github.com/danstis/gotemplate?style=flat-square)](https://goreportcard.com/report/github.com/danstis/gotemplate)
-[![PkgGoDev](https://pkg.go.dev/badge/github.com/danstis/gotemplate)](https://pkg.go.dev/github.com/danstis/gotemplate)
-[![Release](https://img.shields.io/github/release/danstis/gotemplate.svg?style=flat-square)](https://github.com/danstis/gotemplate/releases/latest)
+[![Go Report Card](https://goreportcard.com/badge/github.com/danstis/go-openxbl?style=flat-square)](https://goreportcard.com/report/github.com/danstis/go-openxbl)
+[![PkgGoDev](https://pkg.go.dev/badge/github.com/danstis/go-openxbl)](https://pkg.go.dev/github.com/danstis/go-openxbl)
+[![Release](https://img.shields.io/github/release/danstis/go-openxbl.svg?style=flat-square)](https://github.com/danstis/go-openxbl/releases/latest)
 
-My base repo template for Go projects.
+A go client for the [OpenXBL](https://xbl.io) API.
 
 ## Code structure
 

@@ -12,13 +12,17 @@ var token string = os.Getenv("openxbltoken")
 func main() {
 	api := openxbl.NewClient(token)
 
-	services, _, err := api.Services.List()
+	user, err := api.FriendsService.Search("john")
 	if err != nil {
 		panic(err)
 	}
 
-	for _, s := range *services {
-		gs, _, _ := api.GameServers.Get(s.ID)
-		fmt.Printf("GameServer for %q: %q\n", s.Details.Name, gs.GameHuman)
+	var gt string
+	for _, v := range user.Settings {
+		if v.ID == "Gamertag" {
+			gt = v.Value
+		}
 	}
+
+	fmt.Printf("Gamertag for user: %s", gt)
 }

@@ -49,10 +49,10 @@ jobs:
           fetch-depth: 0
 
       - name: Test
-        run: go test -v -race ./...
+        run: go test -v -race -coverprofile=cover.out -json ./openxbl/ > test-report.out
 
       - name: Go Vet
-        run: go vet ./...
+        run: go vet ./openxbl/
 
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master # https://github.com/marketplace/actions/sonarcloud-scan

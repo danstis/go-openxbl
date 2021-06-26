@@ -52,6 +52,12 @@ jobs:
       - name: Go Vet
         run: go vet ./...
 
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@master # https://github.com/marketplace/actions/sonarcloud-scan
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Needed to get PR information, if any
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
   lint:
     name: Lint
     runs-on: ubuntu-latest

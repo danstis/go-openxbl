@@ -15,11 +15,15 @@ import (
 	"github.com/google/go-querystring/query"
 )
 
-const (
-	defaultBaseURI string        = "https://xbl.io/api/v2/"
-	retryCount     int           = 10
-	retryDelay     time.Duration = 2 * time.Second
-	userAgent      string        = "go-openxbl"
+var (
+	// DefaultBaseURI contains the base URI for the API.
+	DefaultBaseURI string = "https://xbl.io/api/v2/"
+	// RetryCount controls how many times the client will retry on failure.
+	RetryCount int = 10
+	// RetryDelay controls the delay between retries.
+	RetryDelay time.Duration = 2 * time.Second
+	// UserAgent defines the user agent that is sent with the requests.
+	UserAgent string = "go-openxbl"
 )
 
 // Client represents the config of the OpenXBL Client
@@ -115,12 +119,12 @@ func (c *Client) Do(req *http.Request, v interface{}) (*http.Response, error) {
 	// Do the request
 	var err error = nil
 	var resp *http.Response
-	for i := 0; i < retryCount; i++ {
+	for i := 0; i < RetryCount; i++ {
 		resp, err = c.client.Do(req)
 		if err == nil && resp.StatusCode < 400 {
 			break
 		}
-		time.Sleep(retryDelay)
+		time.Sleep(RetryDelay)
 	}
 	if v != nil {
 		if w, ok := v.(io.Writer); ok {
@@ -141,13 +145,13 @@ func (c *Client) Do(req *http.Request, v interface{}) (*http.Response, error) {
 
 // NewClient creates a new instance of a OpenXBLAPI
 func NewClient(apiKey string) *Client {
-	baseURL, _ := url.Parse(defaultBaseURI)
+	baseURL, _ := url.Parse(DefaultBaseURI)
 
 	c := &Client{
 		BaseURI:   baseURL,
 		apiKey:    apiKey,
 		client:    &http.Client{},
-		UserAgent: userAgent,
+		UserAgent: UserAgent,
 	}
 
 	c.common.client = c

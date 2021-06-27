@@ -17,7 +17,7 @@ import (
 
 const (
 	defaultBaseURI string        = "https://xbl.io/api/v2/"
-	retryCount     int           = 1 //0
+	retryCount     int           = 10
 	retryDelay     time.Duration = 2 * time.Second
 	userAgent      string        = "go-openxbl"
 )

@@ -2,6 +2,7 @@ package openxbl
 
 import (
 	"fmt"
+	"net/url"
 )
 
 // Generated structs from https://mholt.github.io/json-to-go/
@@ -18,7 +19,7 @@ type FriendSeachResp struct {
 
 // Search will perform a search of an XBox Gamertag.
 func (s *FriendsService) Search(gt string) (User, error) {
-	u := fmt.Sprintf("friends/search/?gt=%v", gt)
+	u := fmt.Sprintf("friends/search/?gt=%v", url.QueryEscape(gt))
 
 	req, err := s.client.NewRequest("GET", u, nil)
 	if err != nil {

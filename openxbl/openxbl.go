@@ -15,11 +15,15 @@ import (
 	"github.com/google/go-querystring/query"
 )
 
-const (
-	defaultBaseURI string        = "https://xbl.io/api/v2/"
-	retryCount     int           = 10
-	retryDelay     time.Duration = 2 * time.Second
-	userAgent      string        = "go-openxbl"
+var (
+	// DefaultBaseURI contains the base URI for the API.
+	DefaultBaseURI string = "https://xbl.io/api/v2/"
+	// RetryCount controls how many times the client will retry on failure.
+	RetryCount int = 10
+	// RetryDelay controls the delay between retries.
+	RetryDelay time.Duration = 2 * time.Second
+	// UserAgent defines the user agent that is sent with the requests.
+	UserAgent string = "go-openxbl"
 )
 
 // Client represents the config of the OpenXBL Client

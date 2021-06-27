@@ -119,12 +119,12 @@ func (c *Client) Do(req *http.Request, v interface{}) (*http.Response, error) {
 	// Do the request
 	var err error = nil
 	var resp *http.Response
-	for i := 0; i < retryCount; i++ {
+	for i := 0; i < RetryCount; i++ {
 		resp, err = c.client.Do(req)
 		if err == nil && resp.StatusCode < 400 {
 			break
 		}
-		time.Sleep(retryDelay)
+		time.Sleep(RetryDelay)
 	}
 	if v != nil {
 		if w, ok := v.(io.Writer); ok {
@@ -145,13 +145,13 @@ func (c *Client) Do(req *http.Request, v interface{}) (*http.Response, error) {
 
 // NewClient creates a new instance of a OpenXBLAPI
 func NewClient(apiKey string) *Client {
-	baseURL, _ := url.Parse(defaultBaseURI)
+	baseURL, _ := url.Parse(DefaultBaseURI)
 
 	c := &Client{
 		BaseURI:   baseURL,
 		apiKey:    apiKey,
 		client:    &http.Client{},
-		UserAgent: userAgent,
+		UserAgent: UserAgent,
 	}
 
 	c.common.client = c

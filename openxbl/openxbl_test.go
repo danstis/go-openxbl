@@ -74,10 +74,10 @@ func testURLParseError(t *testing.T, err error) {
 func TestNewClient(t *testing.T) {
 	c := NewClient(token)
 
-	if got, want := c.BaseURI.String(), defaultBaseURI; got != want {
+	if got, want := c.BaseURI.String(), DefaultBaseURI; got != want {
 		t.Errorf("NewClient BaseURI is %v, want %v", got, want)
 	}
-	if got, want := c.UserAgent, userAgent; got != want {
+	if got, want := c.UserAgent, UserAgent; got != want {
 		t.Errorf("NewClient UserAgent is %v, want %v", got, want)
 	}
 
@@ -91,7 +91,7 @@ func TestNewClient(t *testing.T) {
 func TestNewRequest(t *testing.T) {
 	c := NewClient(token)
 
-	inURL, outURL := "/api/v2/foo", defaultBaseURI+"foo"
+	inURL, outURL := "/api/v2/foo", DefaultBaseURI+"foo"
 	inBody, outBody := &[]string{"Test", "Test2"}, `["Test","Test2"]`+"\n"
 	req, _ := c.NewRequest("GET", inURL, inBody)
 

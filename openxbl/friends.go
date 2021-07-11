@@ -14,7 +14,7 @@ type FriendsService apiService
 
 // FriendSeachResp contains the response from the /friends/search operation.
 type FriendSeachResp struct {
-	ProfileUsers []User `json:"profileUsers"`
+	ProfileUsers []User `json:"profileUsers,omitempty"`
 }
 
 // Search will perform a search of an XBox Gamertag.

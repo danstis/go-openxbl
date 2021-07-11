@@ -14,7 +14,8 @@ func main() {
 
 	user, err := api.FriendsService.Search("john")
 	if err != nil {
-		panic(err)
+		fmt.Printf("Failed with error: %v", err)
+		os.Exit(1)
 	}
 
 	var gt string

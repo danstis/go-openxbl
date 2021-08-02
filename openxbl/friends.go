@@ -28,7 +28,7 @@ func (s *FriendsService) Search(gt string) (User, error) {
 
 	var friendSeachResp *FriendSeachResp
 	_, err = s.client.Do(req, &friendSeachResp)
-	if err != nil {
+	if err != nil || friendSeachResp == nil {
 		return User{}, err
 	}
 

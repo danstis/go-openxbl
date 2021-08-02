@@ -32,7 +32,7 @@ func (s *FriendsService) Search(gt string) (User, error) {
 		return User{}, err
 	}
 	if friendSeachResp == nil {
-		return User{}, fmt.Errorf("something went wrong, try again: %s", resp.Status)
+		return User{}, fmt.Errorf("something went wrong, try again. Details(%s)", resp.Status)
 	}
 
 	if len(friendSeachResp.ProfileUsers) < 1 {

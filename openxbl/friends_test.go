@@ -21,6 +21,8 @@ func TestFriendsService_Search(t *testing.T) {
 			fmt.Fprint(w, `{"profileUsers":[{"id":"555123456789","hostId":"555123456789","settings":[{"id":"GameDisplayPicRaw","value":"https://images-eds-ssl.xboxlive.com/image?url=123&mode=Padding&format=png"},{"id":"Gamerscore","value":"987"},{"id":"Gamertag","value":"John"},{"id":"AccountTier","value":"Silver"},{"id":"XboxOneRep","value":"GoodPlayer"},{"id":"PreferredColor","value":"https://dlassets-ssl.xboxlive.com/public/content/ppl/colors/00000.json"},{"id":"RealName","value":""},{"id":"Bio","value":""},{"id":"TenureLevel","value":"0"},{"id":"Watermarks","value":""},{"id":"Location","value":""},{"id":"ShowUserAsAvatar","value":"1"}],"isSponsoredUser":false}]}`)
 		case "gt=nonexisting":
 			fmt.Fprint(w, `{"code":28,"source":"Profile","description":"The server found no data for the requested entity.","traceInformation":null}`)
+		case "gt=failure":
+			fmt.Fprint(w, ``)
 		}
 	})
 
@@ -69,6 +71,15 @@ func TestFriendsService_Search(t *testing.T) {
 			s:    client.FriendsService,
 			args: args{
 				gt: "nonexisting",
+			},
+			want:    User{},
+			wantErr: true,
+		},
+		{
+			name: "Other failure",
+			s:    client.FriendsService,
+			args: args{
+				gt: "failure",
 			},
 			want:    User{},
 			wantErr: true,

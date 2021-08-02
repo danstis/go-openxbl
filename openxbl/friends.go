@@ -27,12 +27,12 @@ func (s *FriendsService) Search(gt string) (User, error) {
 	}
 
 	var friendSeachResp *FriendSeachResp
-	_, err = s.client.Do(req, &friendSeachResp)
+	resp, err := s.client.Do(req, &friendSeachResp)
 	if err != nil {
 		return User{}, err
 	}
 	if friendSeachResp == nil {
-		return User{}, fmt.Errorf("something went wrong, try again")
+		return User{}, fmt.Errorf("something went wrong, try again: %s", resp.Status)
 	}
 
 	if len(friendSeachResp.ProfileUsers) < 1 {

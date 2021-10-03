@@ -13,4 +13,5 @@ changelog:
     exclude:
       - "^(build|chore|ci|doc|docs|none|perf|refactor|skip|test)(\\(.*?\\))?:\\s?"
 release:
+  discussion_category_name: General
   prerelease: auto
